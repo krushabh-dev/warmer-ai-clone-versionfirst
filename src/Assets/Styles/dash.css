@@ -1,0 +1,49 @@
+.warning-section{
+    background: #ff6f79;
+    text-align: center;
+    padding: 4px;
+    padding-top: 10px;
+    color: #fff;
+}
+
+#homeSection{
+    background: #f4f5f7;
+}
+
+#homeSection .icon svg{
+    background: #d8fbed;
+    color: #008357;
+    border-radius: 50%;
+    width: 4rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    /* margin: auto; */
+}
+
+#homeSection .icon{
+    margin: auto;
+    font-size: 1rem;
+}
+
+#homeSection h3.card-title {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+
+#homeSection p.card-text {
+    color: #6b7280;
+}
+
+#homeSection .abtn {
+    width: 100%;
+    max-width: 18rem;
+    background: #1c64f2;
+}
+
+@media (min-width: 768px){
+    .w-md-50{
+        width: 50%;
+    }
+}
