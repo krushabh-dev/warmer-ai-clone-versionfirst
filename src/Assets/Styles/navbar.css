@@ -1,0 +1,8 @@
+.navbar-top-gradient{
+    width: 100%;
+    left:0;
+    top:0;
+    position: absolute;
+    height: 0.75rem;
+    background-image: linear-gradient(to right, #4f46e5, #34d399);
+}
