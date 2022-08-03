@@ -6,3 +6,13 @@
     height: 0.75rem;
     background-image: linear-gradient(to right, #4f46e5, #34d399);
 }
+
+a.nav-link {
+    font-weight: 500;
+    padding: 15px;
+    font-size: 18px;
+}
+
+li.nav-item {
+    padding: 0px 12px;
+}
