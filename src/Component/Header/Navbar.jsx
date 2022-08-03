@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <>
     <span className="navbar-top-gradient"></span>
-      <nav className="navbar navbar-expand-lg py-3">
+      <nav className="navbar navbar-expand-lg py-3 my-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
@@ -25,12 +25,12 @@ function Navbar() {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">
-                  Home
+                  Log In
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item black-btn">
                 <a className="nav-link" href="#">
-                  Link
+                  Register
                 </a>
               </li>
             </ul>
