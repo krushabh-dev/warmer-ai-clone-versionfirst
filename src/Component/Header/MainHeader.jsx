@@ -6,7 +6,7 @@ function MainHeader() {
     <>
     <section className="headarea">
         <div className="container">
-            <div className="col-md-12">
+            <div className="col-md-12 pt-3">
                 <div className="section-title my-5 mb-lg-2">
                     <h2 className='mb-lg-0'>Our AI email writer <br /> personalizes in seconds</h2>
                 </div>
