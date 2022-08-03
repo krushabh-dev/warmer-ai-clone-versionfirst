@@ -1,10 +1,11 @@
 import React from "react";
+import "../../Assets/Styles/navbar.css";
 
 function Navbar() {
   return (
     <>
     <span className="navbar-top-gradient"></span>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg py-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Navbar
