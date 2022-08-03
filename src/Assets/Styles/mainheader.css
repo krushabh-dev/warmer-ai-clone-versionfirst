@@ -1,0 +1,21 @@
+.section-title h2 {
+    background: #6300EC;
+    background: linear-gradient(to right, #6300EC 0%, #00d4a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-title h2 {
+    text-align: center;
+    font-size: 4.5rem;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.section-para p{
+    text-align: center;
+    font-size: 1.65rem;
+    line-height: 2rem;
+    font-weight: 500;
+    color: #4b5364d1;
+}
