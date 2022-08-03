@@ -5,6 +5,7 @@ function MainHeader() {
   return (
     <>
     <section className="headarea">
+        <span className="bgimg"></span>
         <div className="container">
             <div className="col-md-12 pt-3">
                 <div className="section-title my-5 mb-lg-2">
