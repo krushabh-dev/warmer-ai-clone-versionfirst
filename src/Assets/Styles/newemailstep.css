@@ -5,3 +5,44 @@
 .minh-16rem{
     min-height: 16rem;
 }
+
+.minw-36rem{
+    min-width: 36rem;
+}
+
+input#company-name, #company-website, #company-description {
+    width: inherit;
+}
+
+.modelone-title{
+    font-size: 1.5rem;
+    color: #161e2e;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+
+p.modelone-para {
+    font-size: .775rem;
+    font-weight: 400;
+    color: #787878;
+}
+
+@media (min-width: 576px){
+    .minw-sm-48rem{
+        min-width: 48rem;
+    }
+}
+
+.btn-add-id {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%) !important;
+    width: 100% !important;
+    color: white !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    justify-content: center !important;
+    margin: 0px 40px;
+    border-radius: 10px !important;
+    background-color: #7000ef !important;
+    text-transform: capitalize !important;
+}
