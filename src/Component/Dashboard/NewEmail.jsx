@@ -2,15 +2,23 @@ import React from 'react'
 import Appbar from './Appbar'
 import "../../Assets/Styles/dash.css";
 
-function NewEmail() {
+function WarningSection(){
   return (
     <>
-    <Appbar />
     <section>
         <div className="warning-section">
             <h6>Uh-oh...You have 10 credits left. Upgrade now!</h6>
         </div>
     </section>
+    </>
+  )
+}
+
+function NewEmail() {
+  return (
+    <>
+    <Appbar />
+    <WarningSection />
     <section id="homeSection">
     <div className="container">
         <div className="row">
@@ -53,3 +61,4 @@ function NewEmail() {
 }
 
 export default NewEmail
+export {WarningSection}
