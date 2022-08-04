@@ -16,14 +16,16 @@ import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import InputLabel from "@mui/material/InputLabel";
 import AddIcon from "@mui/icons-material/Add";
-import TextField from "@mui/material/TextField";
-import Input from "@mui/material/Input";
 import FormControl from "@mui/material/FormControl";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import CalendarTodayTwoToneIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import HighlightAltTwoToneIcon from "@mui/icons-material/HighlightAltTwoTone";
 import HelpTwoToneIcon from "@mui/icons-material/HelpTwoTone";
 import CommentBankTwoToneIcon from "@mui/icons-material/CommentBankTwoTone";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+
 import Appbar from "./Appbar";
 import "../../Assets/Styles/newemailstep.css";
 import { WarningSection } from "./NewEmail";
@@ -312,6 +314,35 @@ function EmailStepsWizard() {
     );
   };
 
+  const Stepthree = () => {
+    return (
+      <>
+        <div className="card border-0 minh-16rem stepthree">
+          <List
+            sx={{
+              width: "90%",
+              margin: "10px 20px 30px 20px",
+            }}
+          >
+            <div className="mb-2 mt-4 text-center">
+              <p>Enter your recipient's LinkedIn profile username</p>
+
+
+              <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+              
+          <OutlinedInput
+            startAdornment={<InputAdornment position="end">linkedin.com/in/</InputAdornment>}
+          />
+          
+        </FormControl>
+        <Button variant="contained" className='my-2 py-3'>Write My Email</Button>
+            </div>
+          </List>
+        </div>
+      </>
+    );
+  };
+
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper activeStep={activeStep}>
@@ -350,6 +381,7 @@ function EmailStepsWizard() {
           <Typography sx={{ mt: 2, mb: 1 }}> &nbsp; </Typography>
           {activeStep === 0 && <Stepone />}
           {activeStep === 1 && <Steptwo />}
+          {activeStep === 2 && <Stepthree />}
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
