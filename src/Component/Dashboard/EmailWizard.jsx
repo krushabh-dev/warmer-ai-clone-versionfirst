@@ -5,10 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Appbar from './Appbar';
+import "../../Assets/Styles/newemailstep.css";
+import {WarningSection} from './NewEmail';
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
-export default function EmailWizard() {
+function EmailStepsWizard() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
 
@@ -54,6 +57,16 @@ export default function EmailWizard() {
     setActiveStep(0);
   };
 
+  const Stepone = () =>{
+    return(
+      <>
+      <div className="card border-0 minh-16rem">
+  
+      </div>
+      </>
+    )
+  }
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
@@ -88,6 +101,7 @@ export default function EmailWizard() {
       ) : (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          {activeStep === 0 && <Stepone />}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
@@ -113,3 +127,28 @@ export default function EmailWizard() {
     </Box>
   );
 }
+
+function EmailWizard() {
+  return (
+    <>
+    <Appbar />
+    <WarningSection />
+    <section id="newemailstep">
+      <div className="container">
+        <div className="row">
+        <div className="col-md-12 py-5">
+                <h4 className="font-bold">New Email Wizard</h4>
+            </div>
+          <div className="col-md-12 pb-5">
+          <EmailStepsWizard />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    </>
+  )
+}
+
+export default EmailWizard
+
