@@ -12,7 +12,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import InputLabel from "@mui/material/InputLabel";
@@ -20,15 +19,48 @@ import AddIcon from "@mui/icons-material/Add";
 import TextField from "@mui/material/TextField";
 import Input from "@mui/material/Input";
 import FormControl from "@mui/material/FormControl";
-
+import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
+import CalendarTodayTwoToneIcon from "@mui/icons-material/CalendarTodayTwoTone";
+import HighlightAltTwoToneIcon from "@mui/icons-material/HighlightAltTwoTone";
+import HelpTwoToneIcon from "@mui/icons-material/HelpTwoTone";
+import CommentBankTwoToneIcon from "@mui/icons-material/CommentBankTwoTone";
 import Appbar from "./Appbar";
 import "../../Assets/Styles/newemailstep.css";
 import { WarningSection } from "./NewEmail";
 
-const steps = [
-  "Select campaign settings",
-  "Create an ad group",
-  "Create an ad",
+const steps = ["Who We Are", "Goal", "Personalization Type"];
+
+const captions = [
+  "What are we pitching?",
+  "What should this email to lead to?",
+  "Personalize using LinkedIn or Website?",
+];
+
+const Goals = [
+  [
+    1,
+    <CalendarTodayTwoToneIcon />,
+    "Book a meeting",
+    "I want to arrange a call with this person",
+  ],
+  [
+    2,
+    <HighlightAltTwoToneIcon />,
+    "Click a link",
+    "I'm trying to get the person to click a website link",
+  ],
+  [
+    3,
+    <HelpTwoToneIcon />,
+    "Ask a question",
+    "I want to find the answer to a question",
+  ],
+  [
+    4,
+    <CommentBankTwoToneIcon />,
+    "Gauge interest",
+    "I'm trying to assess if this is something the person is interested in",
+  ],
 ];
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -73,7 +105,7 @@ function EmailStepsWizard() {
   const [skipped, setSkipped] = React.useState(new Set());
 
   const isStepOptional = (step) => {
-    return step === 1;
+    return step === 4;
   };
 
   const isStepSkipped = (step) => {
@@ -141,7 +173,6 @@ function EmailStepsWizard() {
               color="primary"
               className="mt-3 ml-auto"
             >
-              
               <AddIcon /> Add New Entity
             </Button>
           </div>
@@ -159,45 +190,56 @@ function EmailStepsWizard() {
               className="border-0 minh-16rem minw-36rem minw-sm-48rem"
             >
               <div className="container">
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                <h3 className="modelone-title">What are we pitching?</h3>
-                <p className="modelone-para">This teaches our AI about your company</p>
-                <Divider className="mb-3" />
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  <h3 className="modelone-title">What are we pitching?</h3>
+                  <p className="modelone-para">
+                    This teaches our AI about your company
+                  </p>
+                  <Divider className="mb-3" />
                 </Typography>
-                
 
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                <FormControl className="mb-4" variant="standard" fullWidth>
-                  <InputLabel shrink htmlFor="company-name">
-                    Company Name
-                  </InputLabel>
-                  <BootstrapInput id="company-name" className='w-100' style={{ width: "100%" }} />
-                </FormControl>
-              </Typography>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  <FormControl className="mb-4" variant="standard" fullWidth>
+                    <InputLabel shrink htmlFor="company-name">
+                      Company Name
+                    </InputLabel>
+                    <BootstrapInput
+                      id="company-name"
+                      className="w-100"
+                      style={{ width: "100%" }}
+                    />
+                  </FormControl>
+                </Typography>
 
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                <FormControl className="mb-4" variant="standard" fullWidth>
-                  <InputLabel shrink htmlFor="company-website">
-                    Company Website
-                  </InputLabel>
-                  <BootstrapInput id="company-website" style={{ width: "100%" }} />
-                </FormControl>
-              </Typography>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  <FormControl className="mb-4" variant="standard" fullWidth>
+                    <InputLabel shrink htmlFor="company-website">
+                      Company Website
+                    </InputLabel>
+                    <BootstrapInput
+                      id="company-website"
+                      style={{ width: "100%" }}
+                    />
+                  </FormControl>
+                </Typography>
 
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                <FormControl className="mb-4" variant="standard" fullWidth>
-                  <InputLabel shrink htmlFor="company-description">
-                    Company Description
-                  </InputLabel>
-                  <BootstrapInput id="company-description" style={{ width: "100%" }} />
-                </FormControl>
-              </Typography>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  <FormControl className="mb-4" variant="standard" fullWidth>
+                    <InputLabel shrink htmlFor="company-description">
+                      Company Description
+                    </InputLabel>
+                    <BootstrapInput
+                      id="company-description"
+                      style={{ width: "100%" }}
+                    />
+                  </FormControl>
+                </Typography>
 
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                <Button variant="contained" className="btn-add-id w-100">Add Identity</Button>
-              </Typography>
-
-
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  <Button variant="contained" className="btn-add-id w-100">
+                    Add Identity
+                  </Button>
+                </Typography>
               </div>
             </Box>
           </Modal>
@@ -219,13 +261,51 @@ function EmailStepsWizard() {
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
-                  <BeachAccessIcon />
+                  <MarkEmailReadOutlinedIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Vacation" secondary="July 20, 2014" />
+              <a href="" style={{ textDecoration: "none" }}>
+                <ListItemText
+                  primary="Personalizations only"
+                  secondary="Write just the first line personalizations, I don't need the whole email written"
+                />
+              </a>
             </ListItem>
             <Divider component="li" variant="inset" />
             <AddEntityModal />
+          </List>
+        </div>
+      </>
+    );
+  };
+
+  const Steptwo = () => {
+    return (
+      <>
+        <div className="card border-0 minh-16rem">
+          <List
+            sx={{
+              width: "90%",
+              margin: "10px 20px 30px 20px",
+            }}
+          >
+            {Goals.map((label, index) => {
+              return (
+                <>
+                  <div className="card mb-2">
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar className="mx-1 mr-5">{label[1]}</Avatar>
+                      </ListItemAvatar>
+                      <a href="" style={{ textDecoration: "none" }}>
+                        <ListItemText primary={label[2]} secondary={label[3]} />
+                      </a>
+                    </ListItem>
+                  </div>
+                  {/* <Divider component="li" variant="inset" /> */}
+                </>
+              );
+            })}
           </List>
         </div>
       </>
@@ -249,6 +329,7 @@ function EmailStepsWizard() {
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
+              <Typography variant="caption">{captions[index]}</Typography>
             </Step>
           );
         })}
@@ -265,8 +346,10 @@ function EmailStepsWizard() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
+          <Typography sx={{ mt: 2, mb: 1 }}> &nbsp; </Typography>
           {activeStep === 0 && <Stepone />}
+          {activeStep === 1 && <Steptwo />}
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
