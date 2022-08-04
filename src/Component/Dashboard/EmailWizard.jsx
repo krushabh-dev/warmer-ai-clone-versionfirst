@@ -5,6 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import Divider from '@mui/material/Divider';
 import Appbar from './Appbar';
 import "../../Assets/Styles/newemailstep.css";
 import {WarningSection} from './NewEmail';
@@ -57,11 +64,48 @@ function EmailStepsWizard() {
     setActiveStep(0);
   };
 
+  const AddEntityModal = () =>{
+    return (<>
+    <Modal
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="parent-modal-title"
+  aria-describedby="parent-modal-description"
+>
+  <Box sx={{ ...style, width: 400 }}>
+    <h2 id="parent-modal-title">Text in a modal</h2>
+    <p id="parent-modal-description">
+      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+    </p>
+    <ChildModal />
+  </Box>
+</Modal>
+    </>)
+  }
+
   const Stepone = () =>{
     return(
       <>
       <div className="card border-0 minh-16rem">
-  
+      <List
+      sx={{
+        width: '90%',
+        margin: '10px 20px'
+      }}
+    >
+      <ListItem>
+        
+        <ListItemAvatar>
+          
+          <Avatar>
+            <BeachAccessIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+
+      </ListItem>
+      <Divider component="li" variant="inset" />
+    </List>
       </div>
       </>
     )
