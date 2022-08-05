@@ -24,12 +24,12 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/login">
                   Log In
                 </a>
               </li>
               <li className="nav-item black-btn">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/signup">
                   Register
                 </a>
               </li>
