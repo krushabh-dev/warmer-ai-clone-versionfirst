@@ -8,16 +8,13 @@ import Register from "./Component/Header/Register";
 
 function RouteMain() {
   return (
-   
       <Routes>
         <Route path="/" exact element={<App />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/signup" exact element={<Register />} />
         <Route path="/dash" exact element={<NewEmail />} />
         <Route path="/new" exact element={<EmailWizard />} />
-
       </Routes>
-   
   );
 }
 
