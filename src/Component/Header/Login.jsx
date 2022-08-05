@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "../../Assets/Styles/login.css";
+const auth = getAuth();
 
 function Login() {
+
+  const [details, setDetails] = useState(0);
+
+  const HandleChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    setDetails({...details, [name]: value});
+  }
+
+  const SubmitFunc = () =>{
+
+  }
+
   return (
     <>
     <div className="mx-auto" id="authSectionArea">
@@ -29,6 +45,7 @@ function Login() {
                 name="email"
                 placeholder="Email Address"
                 className="form-control"
+                onChange={HandleChange} 
               />
             </div>
             <div className="form-group">
@@ -39,6 +56,7 @@ function Login() {
                 name="psw"
                 placeholder="Password"
                 className="form-control"
+                onChange={HandleChange} 
               />
             </div>
             <div className="row justify-content-center my-2">
