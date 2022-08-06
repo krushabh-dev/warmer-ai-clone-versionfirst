@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { auth } from "../../Config/fire";
+import {createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
 import "../../Assets/Styles/login.css";
 
 function Login() {
+  const [details, setDetails] = useState(0);
+
+  const HandleChange = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    setDetails({ ...details, [name]: value });
+  };
+
+  const SubmitFunc = () => {
+    createUserWithEmailAndPassword(auth, details.email, details.psw)
+  .then((userCredential) => {
+      const user = userCredential.user;
+  })
+  .catch((error) => {
+    alert("Error Occured: Make Sure You Have Proper Internet Connection")
+  });
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      window.location.href = "/dash"
+    }
+  });
+
+
   return (
     <>
       <div className="mx-auto" id="authSectionArea">
@@ -17,14 +45,14 @@ function Login() {
                   <h6 className="msg-info text-center">
                     Create new account
                   </h6>
-                  <div class="google-btn mb-3">
-                    <div class="google-icon-wrapper">
+                  <div className="google-btn mb-3">
+                    <div className="google-icon-wrapper">
                       <img
-                        class="google-icon"
+                        className="google-icon"
                         src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                       />
                     </div>
-                    <p class="btn-text">
+                    <p className="btn-text">
                       <b>Sign in with Google</b>
                     </p>
                   </div>
@@ -38,6 +66,7 @@ function Login() {
                       name="username"
                       placeholder="Enter Username"
                       className="form-control"
+                      onChange={HandleChange}
                     />
                   </div>
                   <div className="form-group">
@@ -50,6 +79,7 @@ function Login() {
                       name="email"
                       placeholder="Email Address"
                       className="form-control"
+                      onChange={HandleChange}
                     />
                   </div>
                   <div className="form-group">
@@ -62,6 +92,7 @@ function Login() {
                       name="psw"
                       placeholder="Password"
                       className="form-control"
+                      onChange={HandleChange}
                     />
                   </div>
                   {/* <div className="row justify-content-center my-2">
@@ -70,7 +101,7 @@ function Login() {
                     </a>
                   </div> */}
                   <div className="row justify-content-center my-2 px-3">
-                    <button className="btn-block btn-color">
+                    <button className="btn-block btn-color" onClick={SubmitFunc}>
                       Let's Begin!
                     </button>
                   </div>
