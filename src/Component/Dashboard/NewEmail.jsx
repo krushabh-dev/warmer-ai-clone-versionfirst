@@ -27,7 +27,7 @@ function NewEmail() {
             </div>
             <div className="col-md-12 pb-5">
                 <div className='w-md-50 m-auto'>
-                <div class="card border-0">
+                <div className="card border-0">
                     <div className="icon">
                     <svg
   xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +44,10 @@ function NewEmail() {
 </svg>
 
                     </div>
-  <div class="card-body text-center">
-    <h3 class="card-title">Create New Email</h3>
-    <p class="card-text">Let's help you build a high-converting email using 1-1 personalized info</p>
-    <a href="#" class="btn btn-primary abtn mb-3">Create New Email</a>
+  <div className="card-body text-center">
+    <h3 className="card-title">Create New Email</h3>
+    <p className="card-text">Let's help you build a high-converting email using 1-1 personalized info</p>
+    <a href="/new" className="btn btn-primary abtn mb-3">Create New Email</a>
   </div>
 </div>
                 </div>
