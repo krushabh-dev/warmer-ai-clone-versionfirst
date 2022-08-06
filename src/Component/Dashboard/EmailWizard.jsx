@@ -314,7 +314,6 @@ function EmailStepsWizard() {
   };
 
   const Stepone = () => {
-
     const selectEntityDiv = (event) =>{
       console.log(event.getAttribute("colname"));
     }
