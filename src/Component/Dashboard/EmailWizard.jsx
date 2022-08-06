@@ -111,6 +111,7 @@ function EmailStepsWizard() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [entitylist, setEntitylist] = useState([]);
+  const [newDraft, setNewDraft] = useState([]);
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -313,6 +314,11 @@ function EmailStepsWizard() {
   };
 
   const Stepone = () => {
+
+    const selectEntityDiv = (event) =>{
+      console.log(event.getAttribute("colname"));
+    }
+
     return (
       <>
         <div className="card border-0 minh-16rem">
@@ -330,9 +336,9 @@ function EmailStepsWizard() {
                       <ListItemAvatar>
                         <Avatar className="mx-1 mr-5"><img src={"https://s2.googleusercontent.com/s2/favicons?domain=www." + label.companyName} alt="profile"/></Avatar>
                       </ListItemAvatar>
-                      <a href="" style={{ textDecoration: "none" }}>
+                      <label onClick={selectEntityDiv} colname={label.companyName} style={{ textDecoration: "none" }}>
                         <ListItemText primary={label.companyName} secondary={label.companyDescription} />
-                      </a>
+                      </label>
                     </ListItem>
                   </div>
                   {/* <Divider component="li" variant="inset" /> */}
