@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { alpha, styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
@@ -25,6 +26,10 @@ import CommentBankTwoToneIcon from "@mui/icons-material/CommentBankTwoTone";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormHelperText from '@mui/material/FormHelperText';
+import { uuid } from "../../Config/GenrateUID";
+import { auth, db } from "../../Config/fire";
+import { ref, set } from "firebase/database";
+import { getDatabase, child, get } from "firebase/database";
 
 import Appbar from "./Appbar";
 import "../../Assets/Styles/newemailstep.css";
@@ -105,6 +110,26 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 function EmailStepsWizard() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const [entitylist, setEntitylist] = useState([]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `entity/${auth.currentUser.uid}`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        var res = [];
+        snapshot.forEach(function (data) {
+          res.push(data.val())
+        })
+        setEntitylist(res);
+        console.log(res);
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  },[1]);
 
   const isStepOptional = (step) => {
     return step === 4;
@@ -149,9 +174,26 @@ function EmailStepsWizard() {
   };
 
   const AddEntityModal = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [formone, setFormone] = useState(0);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const HandleChangeFormOne = (event) => {
+      const target = event.target;
+      const value = target.type === "checkbox" ? target.checked : target.value;
+      const name = target.name;
+      setFormone({ ...formone, [name]: value });
+    };
+
+    const FormOneSubmit = () =>{
+      set(ref(db, 'entity/' + auth.currentUser.uid + "/" + uuid), {
+        companyName: formone.companyName,
+        companyWebsite: formone.companyWebsite,
+        companyDescription: formone.companyDescription
+        // email: email
+      });
+    }
 
     const AddEntityModalboxstyle = {
       position: "absolute",
@@ -164,6 +206,8 @@ function EmailStepsWizard() {
       boxShadow: 24,
       p: 4,
     };
+
+
 
     return (
       <>
@@ -180,20 +224,25 @@ function EmailStepsWizard() {
           </div>
           <Modal
             open={open}
-            onClose={handleClose}
+            //onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             data-bs-backdrop="static"
             data-bs-keyboard="false"
             tabIndex={-1}
+            onClose={(_, reason) => {
+              if (reason !== "backdropClick") {
+                handleClose();
+              }
+            }}
           >
             <Box
               sx={AddEntityModalboxstyle}
               className="border-0 minh-16rem minw-36rem minw-sm-48rem"
             >
               <div className="container">
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  <h3 className="modelone-title">What are we pitching?</h3>
+                <Typography id="modal-modal-title modelone-title" variant="h6" component="h2">
+                  What are we pitching?
                   <p className="modelone-para">
                     This teaches our AI about your company
                   </p>
@@ -206,9 +255,13 @@ function EmailStepsWizard() {
                       Company Name
                     </InputLabel>
                     <BootstrapInput
+                    type="text"
                       id="company-name"
                       className="w-100"
                       style={{ width: "100%" }}
+                      name="companyName"
+                      onChange={HandleChangeFormOne}
+                      value={formone.companyName}
                     />
                   </FormControl>
                 </Typography>
@@ -221,6 +274,9 @@ function EmailStepsWizard() {
                     <BootstrapInput
                       id="company-website"
                       style={{ width: "100%" }}
+                      name="companyWebsite"
+                      onChange={HandleChangeFormOne}
+                      value={formone.companyWebsite}
                     />
                   </FormControl>
                 </Typography>
@@ -233,13 +289,19 @@ function EmailStepsWizard() {
                     <BootstrapInput
                       id="company-description"
                       style={{ width: "100%" }}
+                      name="companyDescription"
+                      onChange={HandleChangeFormOne}
+                      value={formone.companyDescription}
                     />
                   </FormControl>
                 </Typography>
 
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                  <Button variant="contained" className="btn-add-id w-100">
+                  <Button variant="contained" className="btn-add-id w-80" onClick={FormOneSubmit}>
                     Add Identity
+                  </Button>
+                  <Button variant="contained" className="btn-add-id w-20" onClick={handleClose}>
+                    Close
                   </Button>
                 </Typography>
               </div>
@@ -260,6 +322,23 @@ function EmailStepsWizard() {
               margin: "10px 20px",
             }}
           >
+            {entitylist.map((label, index) => {
+              return (
+                <>
+                  <div className="card mb-2">
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar className="mx-1 mr-5"><img src={"https://s2.googleusercontent.com/s2/favicons?domain=www." + label.companyName} alt="profile"/></Avatar>
+                      </ListItemAvatar>
+                      <a href="" style={{ textDecoration: "none" }}>
+                        <ListItemText primary={label.companyName} secondary={label.companyDescription} />
+                      </a>
+                    </ListItem>
+                  </div>
+                  {/* <Divider component="li" variant="inset" /> */}
+                </>
+              );
+            })}
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
