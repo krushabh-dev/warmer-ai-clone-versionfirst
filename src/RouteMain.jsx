@@ -8,6 +8,7 @@ import Login from "./Component/Header/Login";
 import Register from "./Component/Header/Register";
 import { auth } from "./Config/fire";
 import { onAuthStateChanged } from "firebase/auth";
+import LogOut from "./Component/Header/LogOut";
 
 class RouteMain extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class RouteMain extends Component {
                 <Route path="/" exact element={<App />} />
                 <Route path="/dash" exact element={<NewEmail />} />
                 <Route path="/new" exact element={<EmailWizard />} />
+                <Route path="/logout" exact element={<LogOut />} />
               </>
             )
           } else {
